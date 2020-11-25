@@ -2,7 +2,7 @@ package ru.matprojects.stc31.hw.hw5;
 
 import java.util.UUID;
 
-public class Animal {
+public class Animal implements Comparable<Animal> {
     private UUID unicNumber;
     private String name;
     private Person owner;
@@ -49,5 +49,37 @@ public class Animal {
             return true;
 
         return false;
+    }
+
+    @Override
+    public int compareTo(Animal o) {
+        if (o.equals(this))
+            return 0;
+
+        int c = o.owner.compareTo(this.owner);
+        if (c == 0) {
+            c = o.name.compareTo(this.name);
+            if (c == 0) {
+                if (o.weight > this.weight)
+                    return 1;
+                else if (o.weight == this.weight)
+                    return 0;
+                else
+                    return -1;
+            } else
+                return c;
+        } else
+            return c;
+    }
+
+    @Override
+    public String toString() {
+        if (this.owner == null || this.unicNumber == null)
+            return "";
+        else
+            return "Owner = (" + this.owner.toString() +
+                    "); id = " + this.unicNumber.toString() +
+                    "; name = " + this.name +
+                    "; weight = " + this.weight;
     }
 }

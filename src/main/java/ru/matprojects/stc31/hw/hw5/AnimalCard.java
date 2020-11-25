@@ -1,6 +1,7 @@
 package ru.matprojects.stc31.hw.hw5;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AnimalCard {
     private SortedMap<String, List<Animal>> animalNameMap;
@@ -34,5 +35,13 @@ public class AnimalCard {
     public void clear() {
         animalNameMap.clear();
         animalUuidMap.clear();
+    }
+
+    public void printSortedAnimalList(){
+        Collection<Animal> values = animalUuidMap.values();
+        List<Animal> collect = values.stream().sorted().collect(Collectors.toUnmodifiableList());
+        for (Animal animal : collect) {
+            System.out.println(animal);
+        }
     }
 }

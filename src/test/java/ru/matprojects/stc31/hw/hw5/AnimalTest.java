@@ -19,7 +19,7 @@ class AnimalTest {
     }
 
     private Animal genNewAnimal(Person person) {
-        int w = new Random().nextInt();
+        int w = new Random().nextInt(36);
         return new Animal(UUID.randomUUID(), "RandomAnName" + w, person, w);
     }
 
@@ -77,5 +77,10 @@ class AnimalTest {
         Animal animalById = animalCard.getAnimalById(animal.getUnicNumber());
         assertNotNull(animalById);
         assertEquals(animal, animalById);
+    }
+
+    @Test
+    void printTest() {
+        animalCard.printSortedAnimalList();
     }
 }
